@@ -13,7 +13,7 @@ stages {
 	 
 	   stage ("cleanig tomcat workspace") {
 	       steps {
-		       sh "rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp.war"
+		       sh "rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp*"
                 }	  
 	        }
 			
