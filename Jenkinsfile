@@ -14,7 +14,7 @@ stages {
 	 
 	   stage ("build process") {
 	        steps { 
-	          sh "clean install"			  
+	          sh "mvn clean install"			  
 	      }
 	    } 
 	 
