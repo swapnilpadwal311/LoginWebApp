@@ -19,7 +19,7 @@ pipeline {
         stage ("build process") {
             steps { 
                 sh "mvn -version"  
-                sh "sudo mvn clean install"			  
+                sh "mvn clean install"			  
             }
         } 
 	 
