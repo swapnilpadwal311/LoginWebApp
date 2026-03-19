@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label "built-in"
+        label "ww"
     }
 
     tools {
@@ -12,26 +12,26 @@ pipeline {
 
         stage ("cleaning local repository") {
             steps { 
-                sh "rm -rf /root/.m2/repository"			  
+                sh "sudo rm -rf /root/.m2/repository"			  
             }
         } 
 	 
         stage ("build process") {
             steps { 
                 sh "mvn -version"  
-                sh "mvn clean install"			  
+                sh "sudo mvn clean install"			  
             }
         } 
 	 
         stage ("cleanig tomcat workspace") {
             steps {
-                sh "rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp*"
+                sh "sudo rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp*"
             }	  
         }
 			
-        stage ("deploy war file into ec2 tomcat workspace"){
+        stage ("deploy war file into tomcat workspace"){
             steps {
-                sh "scp -o StrictHostKeyChecking=no target/LoginWebApp.war root@172.31.43.103:/mnt/servers/apache-tomcat-10.1.52/webapps/"
+                sh "sudo target/LoginWebApp.war /mnt/servers/apache-tomcat-10.1.52/webapps/"
             }
         }
     }
