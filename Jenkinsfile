@@ -31,7 +31,7 @@ pipeline {
 			
         stage ("deploy war file into ec2 tomcat workspace"){
             steps {
-                sh "scp target/LoginWebApp.war root@172.31.43.103:/mnt/servers/apache-tomcat-10.1.52/webapps/"
+                sh "scp -o StrictHostKeyChecking=no target/LoginWebApp.war root@172.31.43.103:/mnt/servers/apache-tomcat-10.1.52/webapps/"
             }
         }
     }
