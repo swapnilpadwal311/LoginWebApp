@@ -1,6 +1,7 @@
 pipeline {
 
           agent {
+		  
 		          label "built-in"
 			    }
 stages {
@@ -11,16 +12,22 @@ stages {
 	      }
 	    } 
 	 
+	   stage ("build process") {
+	        steps { 
+	          sh "clean install"			  
+	      }
+	    } 
+	 
 	   stage ("cleanig tomcat workspace") {
 	       steps {
-		       sh "rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp*"
+		       sh "rm -rf /mnt/servers/apache-tomcat-10.1.52/webapps/LoginWebApp.war"
                 }	  
 	        }
 			
 			
 	   stage ("deploy war file into ec2 tomcat workspace"){
           steps {
-		       sh "scp target/LoginWebApp.war root@172.31.39.71: /mnt/servers/apache-tomcat-10.1.52/webapps/"
+		       sh "scp target/LoginWebApp.war root@172.31.39.71:/mnt/servers/apache-tomcat-10.1.52/webapps/"
 			   }
 
             }
