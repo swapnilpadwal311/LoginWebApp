@@ -31,7 +31,7 @@ pipeline {
 			
         stage ("deploy war file into tomcat workspace"){
             steps {
-                sh "sudo target/LoginWebApp.war /mnt/servers/apache-tomcat-10.1.52/webapps/"
+                sh "sudo cp -r target/LoginWebApp.war /mnt/servers/apache-tomcat-10.1.52/webapps/"
             }
         }
     }
