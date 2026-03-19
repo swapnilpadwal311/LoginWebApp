@@ -31,7 +31,7 @@ pipeline {
 			
         stage ("deploy war file into tomcat workspace"){
             steps {
-                sh "scp -o stricthostkeychecking=no target/LoginWebApp.war root@172.31.32.52: /mnt/servers/apache-tomcat-10.1.52/webapps/"
+                sh "scp -o stricthostkeychecking=no target/LoginWebApp.war root@172.31.32.52:/mnt/servers/apache-tomcat-10.1.52/webapps/"
             }
         }
     }
