@@ -31,19 +31,20 @@ pipeline {
 			
         stage ("make s3 bucket"){
             steps {
-                sh "aws s3 mb s3://swap-22-3-4-5"
+                sh "aws s3 mb s3://swap-22-3-4-555"
             }
         }
 		
 		stage ("copy .war filt into s3 bucket"){
             steps {
-                sh "aws s3 cp target/LoginWebApp.war s3://swap-22-3-4-5"
+                sh "aws s3 cp target/LoginWebApp.war s3://swap-22-3-4-555"
             }
         }
 		
 		stage ("copy .war file s3 bucket to slave machine"){
             steps {
-                sh "scp s3://swap-22-3-4-5/LoginWebApp.war root@172.31.32.52:/mnt/servers/apache-tomcat-10.1.52/webapps/"
+                sh "aws s3 cp s3://swap-22-3-4-555/LoginWebApp.war LoginWebApp.war"
+                sh "scp LoginWebApp.war root@172.31.32.52:/mnt/servers/apache-tomcat-10.1.52/webapps/"
             }
         }
 	
