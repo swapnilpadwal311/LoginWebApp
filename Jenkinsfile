@@ -8,14 +8,15 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
-            steps {
-                // This replaces the 'sh' command and handles credentials securely
-                ansiblePlaybook(
-                    playbook: 'playbook.yml',
-                    inventory: 'hosts',
-                    credentialsId: 'my-ssh-key',
-                    disableHostKeyChecking: true
+       stage('Run Ansible Playbook') {
+    steps {
+        sh '''
+        export ANSIBLE_HOST_KEY_CHECKING=False
+        ansible-playbook -i hosts playbook.yml \
+        -u x \
+        --private-key /var/lib/jenkins/.ssh/id_rsa \
+        --become
+        '''
                 )
             }
         }
