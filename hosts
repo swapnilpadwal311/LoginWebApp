@@ -1,7 +1,6 @@
 [devlinux]
-172.31.40.167 ansible_user=x
-ansible_ssh_private_key_file=/home/x/.ssh/id.rsa
+172.31.38.22
+172.31.40.167
 
-[qalinux]
-172.31.38.22 ansible_user=x
-ansible_ssh_private_key_file=/home/x/.ssh/id.rsa
+[all:vars]
+ansible_user=x
