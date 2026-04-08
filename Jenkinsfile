@@ -10,7 +10,7 @@ pipeline {
         stage('Run Ansible Playbook') {
             steps {
                 sh '''
-                export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i hosts playbook.yml -u x--private-key /etc/ansible/
+                export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -i hosts playbook.yml
                 '''
             }
         }
