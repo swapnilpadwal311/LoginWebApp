@@ -1,5 +1,5 @@
 - hosts: devlinux
-  user: swapnil
+  user: x
   connection: ssh
   become: yes
   gather_facts: yes
