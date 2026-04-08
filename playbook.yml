@@ -1,4 +1,4 @@
-- hosts: devlinux, qalinux
+- hosts: [devlinux, qalinux]
   user: x
   connection: ssh
   become: yes
