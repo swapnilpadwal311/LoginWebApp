@@ -9,7 +9,7 @@ pipeline {
       
         stage('Run Ansible Playbook') {
             steps {
-                sshagent(['my-ssh-key']) {
+                sshagent(['my-ssh-id']) {
                     sh '''
                     ansible-playbook -i hosts playbook.yml
                     '''
