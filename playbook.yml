@@ -1,0 +1,38 @@
+- hosts: devlinux
+  user: swapnil
+  connection: ssh
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create Docker volume
+      community.docker.docker_volume:
+        name: volume1
+        driver: local
+        state: present
+
+    - name: Copy WAR file to volume
+      copy:
+        src: /mnt/LoginWebApp/target/LoginWebApp.war
+        dest: /var/lib/docker/volumes/volume1/_data/
+
+    - name: Run Tomcat container
+      community.docker.docker_container:
+        name: c1
+        image: tomcat:10
+        state: started
+        ports:
+          - "8080:8080"
+        volumes:
+          - volume1:/usr/local/tomcat/webapps
