@@ -1,5 +1,7 @@
 [devlinux]
 172.31.38.22
+
+[qalinux]
 172.31.40.167
 
 [all:vars]
