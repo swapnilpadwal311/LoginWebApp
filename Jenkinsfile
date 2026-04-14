@@ -25,16 +25,16 @@ pipeline {
          chmod -R 777 setup-db.sh
             ./setup-db.sh
         '''
-    }
-}
+           }
+       }
     
-  stage('Deploy to Slave') {
-    steps {
+      stage('Deploy to Slave') {
+      steps {
         sh '''
             scp target/*.war root@172.31.32.152:/mnt/servers/apache-tomcat-10.1.54/webapps
         '''
-    }
-}  
+         }
+       }  
     }
 }
 
