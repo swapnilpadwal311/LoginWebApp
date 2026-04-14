@@ -1,9 +1,6 @@
 pipeline {
     agent { label 'built-in' }
 
-    tools {
-        MAVEN '3.9.14'
-    }
     stages {
         stage('Checkout Code') {
             steps {
@@ -11,6 +8,9 @@ pipeline {
             }
         }
         stage('Build WAR') {
+             tools {
+                 MAVEN '3.9.14'
+            }   
             steps {
                 sh '''
                     mvn clean install
