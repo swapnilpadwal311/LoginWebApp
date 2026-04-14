@@ -1,17 +1,18 @@
 #!/bin/bash
 
-set -e  # stop script immediately if any command fails
-
 DB_HOST="database-2.cnew8imesw19.ap-south-1.rds.amazonaws.com"
 DB_PORT="3306"
-
-DB_USER="admin"
-DB_PASS="admin123@2026"
-
 DB_NAME="database-2"
+DB_USER="admin"
+DB_PASS="admin123"
 
-echo "Connecting to AWS RDS..."
+echo "Creating DB configuration for WAR..."
 
-mysql -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASS" <<SQL
+cat <<EOF > db-config.properties
+spring.datasource.url=jdbc:mysql://$DB_HOST:$DB_PORT/$DB_NAME
+spring.datasource.username=$DB_USER
+spring.datasource.password=$DB_PASS
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+EOF
 
-
+echo "DB config file created: db-config.properties"
