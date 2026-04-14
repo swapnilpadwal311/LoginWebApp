@@ -13,28 +13,13 @@ pipeline {
                 '''
             }
         }
-        stage('Save Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
-            }
-        }
-    
-       stage('Setup DB') {
-       steps {
-         sh '''
-         chmod -R 777 setup-db.sh
-            ./setup-db.sh
-        '''
+       stage('start docker-compose') {
+        steps{
+            sh'''
+            docker-compose up -d
+            '''
            }
-       }
-    
-      stage('Deploy to Slave') {
-      steps {
-        sh '''
-            scp target/*.war root@172.31.32.152:/mnt/servers/apache-tomcat-10.1.54/webapps
-        '''
-         }
-       }  
+        }
     }
 }
 
