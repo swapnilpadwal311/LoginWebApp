@@ -6,7 +6,7 @@ DB_PORT="3306"
 
 # Credentials
 DB_USER="admin"
-DB_PASS="admin 123"
+DB_PASS="admin123"
 
 # Application DB
 DB_NAME="database-2"
