@@ -1,20 +1,23 @@
 pipeline {
-    agent any
+    agent { label 'built-in' }
     stages {
         stage('Checkout Code') {
             steps {
                 git 'https://github.com/swapnilpadwal311/LoginWebApp.git'
             }
         }
-      
-        stage('Run Ansible Playbook') {
+        stage('Build WAR') {
             steps {
-                sshagent(['my-ssh-id']) {
-                    sh '''
-                    ansible-playbook -i hosts playbook.yml
-                    '''
-                }
+                sh '''
+                    mvn clean install
+                '''
+            }
+        }
+        stage('Save Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
             }
         }
     }
 }
+
