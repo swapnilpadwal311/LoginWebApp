@@ -8,9 +8,7 @@ pipeline {
             }
         }
         stage('Build WAR') {
-             tools {
-                 MAVEN '3.9.14'
-            }   
+            
             steps {
                 sh '''
                     mvn clean install
