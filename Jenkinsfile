@@ -22,7 +22,6 @@ pipeline {
        stage('Setup DB') {
        steps {
          sh '''
-            chmod +x setup-db.sh
             ./setup-db.sh
         '''
     }
